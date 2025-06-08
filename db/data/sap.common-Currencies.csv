@@ -1,0 +1,6 @@
+code,symbol,minorUnit,name,descr
+USD,$,2,United States Dollar,US Dollar
+EUR,€,2,Euro,European Union Currency
+JPY,¥,0,Japanese Yen,Japanese Currency
+GBP,£,2,Pound Sterling,British Currency
+AUD,A$,2,Australian Dollar,Australian Currency
