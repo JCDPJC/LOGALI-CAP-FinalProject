@@ -1,8 +1,8 @@
 {
   "name": "CAP_FINALPRO",
   "version": "1.0.0",
-  "description": "CAP Final Project.",
-  "repository": "https://github.com/JCDPJC/LOGALI-CAP-",
+  "description": "CAP Final Project - LOGALI.",
+  "repository": "https://github.com/JCDPJC/LOGALI-CAP-FinalProject.git",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
