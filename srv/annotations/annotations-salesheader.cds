@@ -5,6 +5,7 @@ using from './annotations-orderstatus.cds';
 
 
 // Draft enabled
+annotate service.SalesOrders with @odata.draft.enabled;
 
 annotate service.SalesOrders with { //Field Labels with @title
 
