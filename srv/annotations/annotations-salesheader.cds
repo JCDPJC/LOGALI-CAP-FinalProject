@@ -8,14 +8,14 @@ annotate service.SalesOrders with @odata.draft.enabled;
 
 annotate service.SalesOrders with { //Field Labels with @title
 
-    email        @title: '{i18n>Email}';
-    firstname    @title: 'First Name';
-    lastname     @title: 'Last Name';
-    country      @title: 'Country';
-    createon     @title: 'Create On';
-    deliverydate @title: 'Delivery Date';
-    orderstatus  @title: 'Status';
-    imageURL     @title: 'Image';
+    email        @title: '{i18n>email}';
+    firstname    @title: '{i18n>firstname}';
+    lastname     @title: '{i18n>lastname}';
+    country      @title: '{i18n>country}';
+    createon     @title: '{i18n>createon}';
+    deliverydate @title: '{i18n>deliverydate}';
+    orderstatus  @title: '{i18n>status}';
+    imageURL     @title: '{i18n>image}';
     toSalesItems
 
 };
@@ -32,8 +32,8 @@ annotate service.SalesOrders with @(
 
     UI.HeaderInfo         : { //Header Info
         $Type         : 'UI.HeaderInfoType',
-        TypeName      : 'Sales Order',
-        TypeNamePlural: 'Sales Orders',
+        TypeName      : '{i18n>salesorder}',
+        TypeNamePlural: '{i18n>salesorders}',
         Title         : {
             $Type: 'UI.DataField',
             Value: lastname
@@ -118,6 +118,12 @@ annotate service.SalesOrders with @(
             {
                 $Type: 'UI.DataField',
                 Value: email
+            },
+            {
+                $Type      : 'UI.DataField',
+                Value      : orderstatus_code,
+                Criticality: orderstatus.criticality,
+                Label      : '{i18n>status}'
             }
         ]
     },
@@ -146,16 +152,7 @@ annotate service.SalesOrders with @(
             $Type      : 'UI.DataField',
             Value      : orderstatus_code,
             Criticality: orderstatus.criticality,
-            Label      : '',
-        // ![@Common.FieldControl]: {$edmJson: {$If: [ //Expresión dinámica
-        //     {$Eq: [
-        //         {$Path: 'IsActiveEntity'},
-        //         false
-        //     ]},
-        //     1,
-        //     //ReadOnly
-        //     3 //Optional
-        // ]}},
+            Label      : ''
         }]
     },
 
@@ -170,7 +167,7 @@ annotate service.SalesOrders with @(
             $Type : 'UI.ReferenceFacet',
             Target: '@UI.FieldGroup#Status',
             ID    : 'ProductStatu',
-            Label : 'Order Status'
+            Label : '{i18n>orderstatus}'
         }
     ],
 
@@ -180,19 +177,19 @@ annotate service.SalesOrders with @(
             $Type : 'UI.ReferenceFacet',
             Target: '@UI.FieldGroup#HeaderA',
             ID    : 'Header',
-            Label : 'Header'
+            Label : '{i18n>header}'
         },
         {
             $Type : 'UI.ReferenceFacet',
             Target: '@UI.FieldGroup#Details',
-            Label : 'Details',
+            Label : '{i18n>details}',
             ID    : 'HeaderDetails'
         },
         {
             $Type : 'UI.ReferenceFacet',
             Target: 'toSalesItems/@UI.LineItem',
-            Label : 'Items',
-            ID    : 'toInventories'
+            Label : '{i18n>items}',
+            ID    : 'toSalesItems'
         }
     ]
 

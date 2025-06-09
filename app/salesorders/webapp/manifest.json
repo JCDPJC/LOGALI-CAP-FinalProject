@@ -13,7 +13,7 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
       "version": "1.18.0",
-      "toolsId": "88d94307-ee98-4b9c-9995-4fe6dbf5c78f"
+      "toolsId": "b43bdf26-fa97-4b47-b6bd-aa8fc8454449"
     },
     "dataSources": {
       "mainService": {
@@ -22,6 +22,20 @@
         "settings": {
           "annotations": [],
           "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "JCDsalesorder-manage": {
+          "semanticObject": "JCDsalesorder",
+          "action": "manage",
+          "title": "{{JCDsalesorder-manage.flpTitle}}",
+          "subTitle": "{{JCDsalesorder-manage.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
         }
       }
     }
@@ -92,6 +106,11 @@
           "pattern": "SalesOrders({key}):?query:",
           "name": "SalesOrdersObjectPage",
           "target": "SalesOrdersObjectPage"
+        },
+        {
+          "pattern": "SalesOrders({key})/toSalesItems({key2}):?query:",
+          "name": "SalesItemsObjectPage",
+          "target": "SalesItemsObjectPage"
         }
       ],
       "targets": {
@@ -127,7 +146,25 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/SalesOrders"
+              "contextPath": "/SalesOrders",
+              "navigation": {
+                "toSalesItems": {
+                  "detail": {
+                    "route": "SalesItemsObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "SalesItemsObjectPage": {
+          "type": "Component",
+          "id": "SalesItemsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/SalesOrders/toSalesItems"
             }
           }
         }

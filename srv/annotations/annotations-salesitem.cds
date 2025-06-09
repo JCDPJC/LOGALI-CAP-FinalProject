@@ -1,17 +1,17 @@
 using {SalesOrderCAP as service} from '../service';
 
 annotate service.SalesItems with {
-    name             @title            : 'Name'; //@Common.FieldControl: #ReadOnly;
-    description      @title            : 'Description';
-    releasedate      @title            : 'Release Date';
-    discontinueddate @title            : 'Discontinued Date';
-    price            @title: 'Price'     @Measures.ISOCurrency: currency_code; //
+    name             @title            : '{i18n>name}'; //@Common.FieldControl: #ReadOnly;
+    description      @title            : '{i18n>description}';
+    releasedate      @title            : '{i18n>releasedate}';
+    discontinueddate @title            : '{i18n>discontinueddate}';
+    price            @title: '{i18n>price}'     @Measures.ISOCurrency: currency_code; //
     currency         @Common.IsCurrency: true;
-    height           @title: 'Height'    @Measures.Unit       : baseUnit;
-    width            @title: 'Width'     @Measures.Unit       : baseUnit;
-    depth            @title: 'Depth'     @Measures.Unit       : baseUnit;
+    height           @title: '{i18n>height}'    @Measures.Unit       : baseUnit;
+    width            @title: '{i18n>width}'     @Measures.Unit       : baseUnit;
+    depth            @title: '{i18n>depth}'     @Measures.Unit       : baseUnit;
     baseUnit         @Common.IsUnit      @Common.FieldControl : #ReadOnly;
-    quantity         @title: 'Quantity'  @Measures.Unit       : quanunit;
+    quantity         @title: '{i18n>quantity}'  @Measures.Unit       : quanunit;
     quanunit         @Common.IsUnit      @Common.FieldControl : #ReadOnly;
 };
 
@@ -19,8 +19,8 @@ annotate service.SalesItems with @(
     
     UI.HeaderInfo     : {
         $Type         : 'UI.HeaderInfoType',
-        TypeName      : 'Item',
-        TypeNamePlural: 'Items',
+        TypeName      : '{i18n>item}',
+        TypeNamePlural: '{i18n>items}',
         Title         : {
             $Type: 'UI.DataField',
             Value: name
@@ -108,13 +108,13 @@ annotate service.SalesItems with @(
     UI.Facets         : [{
         $Type : 'UI.ReferenceFacet',
         Target: '@UI.FieldGroup#ItemDetail',
-        Label : 'Item Detail',
+        Label : '{i18n>itemdetails}',
         ID    : 'ItemDetail'
     },
         {
             $Type : 'UI.ReferenceFacet',
             Target: '@UI.FieldGroup#ItemMeasure',
-            Label : 'Measures',
+            Label : '{i18n>measures}',
             ID    : 'measures'
         }]
 );

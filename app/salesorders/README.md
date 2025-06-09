@@ -1,7 +1,7 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Mon Jun 09 2025 13:07:41 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Mon Jun 09 2025 15:34:06 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>SAP Fiori Application Generator|
 |**App Generator Version**<br>1.18.0|
 |**Generation Platform**<br>SAP Business Application Studio|
@@ -17,7 +17,7 @@
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
 |**Main Entity**<br>SalesOrders|
-|**Navigation Entity**<br>None|
+|**Navigation Entity**<br>toSalesItems|
 
 ## salesorders
 

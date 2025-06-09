@@ -14,6 +14,7 @@ service SalesOrderCAP {
          imageURL,
          imageType,
          toSalesItems,
+         
       };
 
    entity SalesItems  as
