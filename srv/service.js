@@ -23,7 +23,7 @@ module.exports = class SalesOrderCAP extends cds.ApplicationService {
 
         this.before("NEW", SalesOrders.drafts, (req) => {
             req.data.createon = new Date().toISOString().slice(0,10);  //Only YYYY-MM-DD
-            req.data.orderstatus = 'Open';
+            req.data.orderstatus_code = 'Open';
            // return req;
         });
 
