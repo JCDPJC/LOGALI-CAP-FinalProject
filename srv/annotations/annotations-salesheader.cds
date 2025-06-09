@@ -1,5 +1,4 @@
 using {SalesOrderCAP as service} from '../service';
-
 using from './annotations-salesitem.cds';
 using from './annotations-orderstatus.cds';
 
@@ -9,20 +8,20 @@ annotate service.SalesOrders with @odata.draft.enabled;
 
 annotate service.SalesOrders with { //Field Labels with @title
 
-    email        @title            : 'Email';
-    firstname    @title            : 'First Name';
-    lastname     @title            : 'Last Name';
-    country      @title            : 'Country';
-    createon     @title            : 'Create On';
-    deliverydate @title            : 'Delivery Date';
-    orderstatus  @title            : 'Status';
-    imageURL     @title            : 'Image';
+    email        @title: '{i18n>Email}';
+    firstname    @title: 'First Name';
+    lastname     @title: 'Last Name';
+    country      @title: 'Country';
+    createon     @title: 'Create On';
+    deliverydate @title: 'Delivery Date';
+    orderstatus  @title: 'Status';
+    imageURL     @title: 'Image';
     toSalesItems
- 
+
 };
 
 annotate service.SalesOrders with {
-    orderstatus         @Common: { //Status text instead code
+    orderstatus @Common: { //Status text instead code
         Text           : orderstatus.name, // Use association
         TextArrangement: #TextOnly
     };
@@ -31,22 +30,22 @@ annotate service.SalesOrders with {
 
 annotate service.SalesOrders with @(
 
-    UI.HeaderInfo                    : { //Header Info
+    UI.HeaderInfo         : { //Header Info
         $Type         : 'UI.HeaderInfoType',
         TypeName      : 'Sales Order',
         TypeNamePlural: 'Sales Orders',
         Title         : {
             $Type: 'UI.DataField',
-            Value: email
+            Value: lastname
         },
         Description   : {
             $Type: 'UI.DataField',
             Value: firstname
         }
-    },  
+    },
 
     // Filtros
-    UI.SelectionFields               : [
+    UI.SelectionFields    : [
         firstname,
         lastname,
         email,
@@ -54,7 +53,7 @@ annotate service.SalesOrders with @(
         deliverydate
     ],
 
-    UI.LineItem                      : [ //Annotation Line Item
+    UI.LineItem           : [ //Annotation Line Item
         {
             $Type                : 'UI.DataField',
             Value                : imageURL, //The image
@@ -93,19 +92,19 @@ annotate service.SalesOrders with @(
             $Type: 'UI.DataField',
             Value: country
         }
-    ],   
+    ],
 
-    UI.FieldGroup #Image             : { //For the image
+    UI.FieldGroup #Image  : { //For the image
         $Type: 'UI.FieldGroupType',
         Data : [{
             $Type: 'UI.DataField',
             Value: imageURL,
             Label: ''
         }],
-    }, 
+    },
 
     // Fieldgroup for Header Facets
-    UI.FieldGroup #HeaderA           : {
+    UI.FieldGroup #HeaderA: {
         $Type: 'UI.FieldGroupType',
         Data : [
             {
@@ -121,9 +120,9 @@ annotate service.SalesOrders with @(
                 Value: email
             }
         ]
-    },  
+    },
 
-    UI.FieldGroup #Details           : {
+    UI.FieldGroup #Details: {
         $Type: 'UI.FieldGroupType',
         Data : [
             {
@@ -139,39 +138,33 @@ annotate service.SalesOrders with @(
                 Value: deliverydate
             }
         ]
-    },          
+    },
 
-    UI.FieldGroup #Status             : {
+    UI.FieldGroup #Status : {
         $Type: 'UI.FieldGroupType',
         Data : [{
-            $Type                  : 'UI.DataField',
-            Value                  : orderstatus_code,
-            Criticality            : orderstatus.criticality,
-            Label                  : '',
-            // ![@Common.FieldControl]: {$edmJson: {$If: [ //Expresión dinámica
-            //     {$Eq: [
-            //         {$Path: 'IsActiveEntity'},
-            //         false
-            //     ]},
-            //     1,
-            //     //ReadOnly
-            //     3 //Optional
-            // ]}},
+            $Type      : 'UI.DataField',
+            Value      : orderstatus_code,
+            Criticality: orderstatus.criticality,
+            Label      : '',
+        // ![@Common.FieldControl]: {$edmJson: {$If: [ //Expresión dinámica
+        //     {$Eq: [
+        //         {$Path: 'IsActiveEntity'},
+        //         false
+        //     ]},
+        //     1,
+        //     //ReadOnly
+        //     3 //Optional
+        // ]}},
         }]
     },
 
     // Header Facets
-    UI.HeaderFacets                  : [
+    UI.HeaderFacets       : [
         {
             $Type : 'UI.ReferenceFacet',
             Target: '@UI.FieldGroup#Image',
             ID    : 'Image'
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Target: '@UI.FieldGroup#HeaderA',
-            ID    : 'Header',
-            Label : '  '
         },
         {
             $Type : 'UI.ReferenceFacet',
@@ -182,14 +175,19 @@ annotate service.SalesOrders with @(
     ],
 
     // Facet detail with FacetCollections
-    UI.Facets                        : [
+    UI.Facets             : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target: '@UI.FieldGroup#HeaderA',
+            ID    : 'Header',
+            Label : 'Header'
+        },
         {
             $Type : 'UI.ReferenceFacet',
             Target: '@UI.FieldGroup#Details',
-            Label : 'Header Details',
+            Label : 'Details',
             ID    : 'HeaderDetails'
-        }
-        ,
+        },
         {
             $Type : 'UI.ReferenceFacet',
             Target: 'toSalesItems/@UI.LineItem',

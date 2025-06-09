@@ -25,7 +25,7 @@ entity SalesOrders : cuid, managed {
     imageURL     : LargeBinary  @Core.MediaType: imageType  @UI.IsImage; //Image type in field imageType, field is an Image
     imageType    : String       @Core.IsMediaType;
     toSalesItems      : Composition of many SalesItems  // 1..n relation of composition - Deep Insert
-                 on toSalesItems.salesorder = $self; // 1..N relation
+                 on toSalesItems.tosalesorder = $self; // 1..N relation
 }
 
 entity SalesItems : cuid {
@@ -41,7 +41,7 @@ entity SalesItems : cuid {
     baseUnit         : String default 'CM';
     quantity         : Decimal(16, 2);
     quanunit         : String default 'UN';
-    salesorder       : Association to SalesOrders;
+    tosalesorder       : Association to SalesOrders;
 };
 
 /** Code List  -------------------------------------------- */

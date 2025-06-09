@@ -1,2 +1,2 @@
-ID,name,description,releasedate,discontinueddate,price,currency_code,height,width,depth,baseUnit,quantity,quanunit,salesorder_ID
+ID,name,description,releasedate,discontinueddate,price,currency_code,height,width,depth,baseUnit,quantity,quanunit,tosalesorder_ID
 54244d10-5450-4fa3-b157-20f57943c812,POCO X6,Poco X6 PRO 12GB,2024-05-31,2029-12-31,34,EUR,12,5,1.2,CM,2,UN,54244d10-5450-4fa3-b157-20f57943c812
