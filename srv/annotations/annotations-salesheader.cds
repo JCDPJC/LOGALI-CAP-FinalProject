@@ -162,13 +162,14 @@ annotate service.SalesOrders with @(
             $Type : 'UI.ReferenceFacet',
             Target: '@UI.FieldGroup#Image',
             ID    : 'Image'
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Target: '@UI.FieldGroup#Status',
-            ID    : 'ProductStatu',
-            Label : '{i18n>orderstatus}'
         }
+        // ,
+        // {
+        //     $Type : 'UI.ReferenceFacet',
+        //     Target: '@UI.FieldGroup#Status',
+        //     ID    : 'ProductStatu',
+        //     Label : '{i18n>orderstatus}'
+        // }
     ],
 
     // Facet detail with FacetCollections
